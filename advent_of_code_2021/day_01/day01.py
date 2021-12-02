@@ -3,7 +3,7 @@ import numpy as np
 from numpy.lib.stride_tricks import sliding_window_view
 
 
-input_file = Path(__file__).parent / 'input01-1.txt'
+input_file = Path(__file__).parent / '../../data/input01.txt'
 
 def count_increases(data: np.ndarray, window: int = 1) -> int:
     """count.
