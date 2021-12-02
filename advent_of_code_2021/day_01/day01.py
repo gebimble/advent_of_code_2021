@@ -25,5 +25,5 @@ def count_increases(data: np.ndarray, window: int = 1) -> int:
 
 data = np.loadtxt(input_file, dtype=int)
 
-print(count_increases(data))
-print(count_increases(data, window=3))
+print(f'Part 1 solution: {count_increases(data)}')
+print(f'Part 2 solution: {count_increases(data, window=3)}')
