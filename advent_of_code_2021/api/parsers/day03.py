@@ -6,6 +6,8 @@ def parse(input_file: Path) -> dict:
     content = []
 
     with input_file.open('r') as f:
-        content.append([[int(x) for x in line.split()] for line in f])
+        for line in f:
+            digits = [int(x) for x in line.strip()]
+            content.append(digits)
 
     return {'data': content}

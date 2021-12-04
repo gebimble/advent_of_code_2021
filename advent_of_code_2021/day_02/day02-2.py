@@ -1,8 +1,6 @@
-from pathlib import Path
-from dataclasses import dataclass
 import numpy as np
 
-from advent_of_code_2021.get_data import get_data
+from advent_of_code_2021.day_02 import data
 
 
 def forward_func(arr: np.ndarray, magnitude: int) -> np.ndarray:
@@ -31,11 +29,9 @@ move_dict = {
 }
 
 
-json = get_data(2)
-
 position = np.array([0, 0, 0])
 
-for direction, magnitude in json['data']:
+for direction, magnitude in data:
     index, op = move_dict[direction]
 
     position[index] = op(position[index], magnitude)
