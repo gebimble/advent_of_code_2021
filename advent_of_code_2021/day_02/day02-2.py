@@ -2,8 +2,8 @@ from pathlib import Path
 from dataclasses import dataclass
 import numpy as np
 
+from advent_of_code_2021.get_data import get_data
 
-input_file = Path(__file__).parent / '../../data/input02.txt'
 
 def forward_func(arr: np.ndarray, magnitude: int) -> np.ndarray:
     """forward_func.
@@ -31,14 +31,13 @@ move_dict = {
 }
 
 
+json = get_data(2)
+
 position = np.array([0, 0, 0])
 
-with input_file.open('r') as f:
-    for line in f:
-        direction, magnitude = line.split()
-        index, op = move_dict[direction]
-        magnitude = int(magnitude)
+for direction, magnitude in json['data']:
+    index, op = move_dict[direction]
 
-        position[index] = op(position[index], magnitude)
+    position[index] = op(position[index], magnitude)
 
 print(np.prod(position[:2]))

@@ -2,8 +2,9 @@ from pathlib import Path
 import numpy as np
 from numpy.lib.stride_tricks import sliding_window_view
 
+from advent_of_code_2021.get_data import get_data
 
-input_file = Path(__file__).parent / '../../data/input01.txt'
+
 
 def count_increases(data: np.ndarray, window: int = 1) -> int:
     """count.
@@ -23,7 +24,8 @@ def count_increases(data: np.ndarray, window: int = 1) -> int:
     data = sliding_window_view(data, window_shape=window).sum(axis=1)
     return np.sum(data[1:] > data[:-1])
 
-data = np.loadtxt(input_file, dtype=int)
+json = get_data(1)
+data = np.array(json['data'], dtype=int)
 
 print(f'Part 1 solution: {count_increases(data)}')
 print(f'Part 2 solution: {count_increases(data, window=3)}')
