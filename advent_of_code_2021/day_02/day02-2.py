@@ -6,6 +6,20 @@ import numpy as np
 input_file = Path(__file__).parent / '../../data/input02.txt'
 
 def forward_func(arr: np.ndarray, magnitude: int) -> np.ndarray:
+    """forward_func.
+
+    Parameters
+    ----------
+    arr : np.ndarray
+        Input array.
+    magnitude : int
+        Size of forward movement.
+
+    Returns
+    -------
+    np.ndarray
+
+    """
     arr[0] += magnitude
     arr[1] += arr[2] * magnitude
     return arr

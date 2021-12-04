@@ -12,9 +12,21 @@ def index():
 
 @app.route('/data/<day>')
 def get_data(day):
+
+    import importlib.util
+    import sys
+
     day = int(day)
 
     data_file = data_directory / f'input{day:02d}.txt'
-    parser = None
 
-    return {'data': f'The data from {str(data_file)}'}
+    parser = Path(f'parsers/day{day:02d}.py')
+    module_name = parser.stem
+    file_path = str(parser.absolute())
+
+    spec = importlib.util.spec_from_file_location(module_name, file_path)
+    module = importlib.util.module_from_spec(spec)
+    sys.modules[module_name] = module
+    spec.loader.exec_module(module)
+
+    return module.parse(data_file)
