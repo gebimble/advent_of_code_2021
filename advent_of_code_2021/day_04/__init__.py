@@ -7,5 +7,5 @@ json = get_data(4)
 
 numbers = np.array(json['data']['numbers'], dtype=int)
 
-cards = [np.array(x, dtype=int) for x in json['data']['cards']]
+bingo_cards = [np.array(x, dtype=int) for x in json['data']['bingo_cards']]
 
