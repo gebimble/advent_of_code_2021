@@ -1,8 +1,11 @@
+from operator import gt, lt
 import numpy as np
 from scipy import stats
 
 from advent_of_code_2021.day_03 import data
 
+data = np.array([[int(x) for x in element] for element in data])
+breakpoint()
 
 mode, count = [np.array(x[0]) for x in stats.mode(data, axis=0)]
 flipped = [1 if x == 0 else 0 for x in mode]
@@ -21,7 +24,7 @@ def bin_list_to_int(bin_list: str) -> int:
         Base 2 integer derived from binary number string.
 
     """
-    return int(''.join([str(x) for x in mode]), 2)
+    return int(''.join([str(x) for x in bin_list.ravel()]), 2)
 
 def count_from_left(array: np.ndarray) -> int:
     """count_from_left.
@@ -48,8 +51,9 @@ def count_from_left(array: np.ndarray) -> int:
     return i
 
 def get_rating(data: np.ndarray,
-               array: np.ndarray,
-               counts: np.ndarray) -> np.ndarray:
+               min_max,
+               default: int
+              ) -> np.ndarray:
     """get_rating.
 
     Parameters
@@ -68,19 +72,32 @@ def get_rating(data: np.ndarray,
         matches of values in `array`.
 
     """
+    temp_data = data.copy()
 
-    threshold = data.shape[0]/2
+    for x in range(0, temp_data.shape[1]):
 
-    if (counts == threshold).any():
-        locs = np.where(counts == threshold)
-        array[locs] = 1
+        if temp_data.shape[0] == 1:
+            return temp_data
 
-    match_array = np.apply_along_axis(count_from_left, 1, data == array)
+        counts = {(temp_data[:, x] == y).sum(): y for y in (0, 1)}
 
-    return data[np.where(match_array == match_array.max())]
+        if len(set(counts.keys())) == 1:
+            value = default
+        else:
+            min_max_key = min_max(list(counts.keys()))
+            value = counts[min_max_key]
+
+        keep = temp_data[:, x] == value
+
+        temp_data = temp_data[keep]
+
+    return temp_data
 
 
-oxygen = get_rating(data, mode, count)
-carbon_dioxide = get_rating(data, flipped, count)
+oxygen = get_rating(data, max, 1)
+breakpoint()
+carbon_dioxide = get_rating(data, min, 0)
+
+breakpoint()
 
 print(bin_list_to_int(oxygen)*bin_list_to_int(carbon_dioxide))
