@@ -3,6 +3,9 @@ from scipy import stats
 
 from advent_of_code_2021.day_04 import numbers, bingo_cards
 
+from pathlib import Path
+from advent_of_code_2021.api.parsers.day04 import parse
+
 def check_card(bingo_card: np.ndarray) -> bool:
     """check_card.
 
@@ -24,7 +27,8 @@ boolean_cards = [np.full_like(x, fill_value=False, dtype=bool) for x in bingo_ca
 def find_winner(numbers, bingo_cards, boolean_cards):
     for number in numbers:
         for i, card in enumerate(bingo_cards):
-            if (x:=np.where(card == number))[0].size > 0:
+            if number in card:
+                x = np.where(card == number)
                 boolean_cards[i][x] = True
 
         for j, boolean_card in enumerate(boolean_cards):

@@ -10,11 +10,12 @@ def parse(input_file: Path) -> dict:
 
         numbers = [int(x) for x in f.readline().split(',')]
 
-        for line in f:
-            drop = dropwhile(lambda x: not x.strip(), f)
-            take = takewhile(lambda x: x.strip(), drop)
+        cards = f.read()
 
-            bingo_cards.append([[int(x) for x in line.strip().split()] for line in take])
+        for card in cards.split('\n\n'):
+
+            bingo_cards.append([[int(x) for x in line.strip().split()] for line in card.strip().split('\n')])
+
 
     return {
         'data':

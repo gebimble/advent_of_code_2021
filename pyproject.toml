@@ -5,7 +5,7 @@ description = ""
 authors = ["Joseph Beaver <joseph.beaver@gmail.com>"]
 
 [tool.poetry.dependencies]
-python = ">=3.10, <3.11"
+python = ">=3.9, <3.11"
 requests = "^2.26.0"
 numpy = "^1.21.4"
 Flask = "^2.0.2"
