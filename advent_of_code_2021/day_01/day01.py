@@ -5,7 +5,7 @@ from advent_of_code_2021.day_01 import data
 
 
 
-def count_increases(data: np.ndarray, window: int = 1) -> int:
+def increases(data: np.ndarray, window: int = 1) -> int:
     """count.
 
     Parameters
@@ -21,7 +21,10 @@ def count_increases(data: np.ndarray, window: int = 1) -> int:
 
     """
     data = sliding_window_view(data, window_shape=window).sum(axis=1)
-    return np.sum(data[1:] > data[:-1])
+    return data[1:] > data[:-1]
 
-print(f'Part 1 solution: {count_increases(data)}')
-print(f'Part 2 solution: {count_increases(data, window=3)}')
+def sum_increases(*args, **kwargs) -> int:
+    return np.sum(increases(*args, **kwargs))
+
+print(f'Part 1 solution: {sum_increases(data)}')
+print(f'Part 2 solution: {sum_increases(data, window=3)}')
