@@ -1,7 +1,7 @@
 import numpy as np
 
-from advent_of_code_2021.api.parsers.day01 import delim_to_int_list
-from advent_of_code_2021.day_01.day01 import increases, sum_increases
+from advent_of_code_2021.api.parsers.day_01 import delim_to_int_list
+from advent_of_code_2021.day_01.day_01 import increases, sum_increases
 
 
 def test_output_to_numpy(day_01_example_text_input):

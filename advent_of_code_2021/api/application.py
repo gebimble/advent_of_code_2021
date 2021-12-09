@@ -18,9 +18,9 @@ def get_data(day):
 
     day = int(day)
 
-    data_file = data_directory / f'input{day:02d}.txt'
+    data_file = data_directory / f'input_{day:02d}.txt'
 
-    parser = Path(f'parsers/day{day:02d}.py')
+    parser = Path(f'parsers/day_{day:02d}.py')
     module_name = parser.stem
     file_path = str(parser.absolute())
 
