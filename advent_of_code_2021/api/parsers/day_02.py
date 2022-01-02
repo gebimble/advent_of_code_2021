@@ -1,5 +1,12 @@
 from pathlib import Path
+from advent_of_code_2021 import Vector
 
+
+def get_vector(line: str) -> Vector:
+    d, m = line.split()
+    m = int(m)
+
+    return d, m
 
 def parse(input_file: Path) -> dict:
 
@@ -7,9 +14,6 @@ def parse(input_file: Path) -> dict:
 
     with input_file.open('r') as f:
         for line in f:
-            direction, magnitude = line.split()
-            magnitude = int(magnitude)
-
-            content.append([direction, magnitude])
+            content.append(get_vector(line))
 
     return {'data': content}
