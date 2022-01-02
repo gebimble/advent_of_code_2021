@@ -1,6 +1,7 @@
 import numpy as np
 
 from advent_of_code_2021.day_02 import data
+from advent_of_code_2021.day_02.day02_1 import move, cum_move
 
 
 def forward_func(arr: np.ndarray, magnitude: int) -> np.ndarray:
@@ -29,11 +30,7 @@ move_dict = {
 }
 
 
-position = np.array([0, 0, 0])
+if __name__ == '__main__':
+    position = cum_move(data, position=None, move_dict=move_dict, start_position=np.array([0,0,0]))
 
-for direction, magnitude in data:
-    index, op = move_dict[direction]
-
-    position[index] = op(position[index], magnitude)
-
-print(np.prod(position[:2]))
+    print(np.prod(position[:2]))
