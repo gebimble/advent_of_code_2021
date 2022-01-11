@@ -3,11 +3,8 @@ import numpy as np
 
 import pytest
 
-from advent_of_code_2021.api.parsers.day_05 import (
-    get_line_ends,
-    remove_diagonal,
-    produce_diagram,
-)
+from advent_of_code_2021.api.parsers.day_05 import get_line_ends
+from advent_of_code_2021.day_05.day05_1 import remove_diagonal, produce_diagram
 
 
 def test_output_to_xys(
@@ -21,11 +18,11 @@ def test_output_to_xys(
 
     start, end = get_line_ends(data[0])
 
-    assert isinstance(start, np.ndarray)
+    assert isinstance(start, list)
     assert start[0] == 0
     assert start[1] == 9
 
-    assert isinstance(start, np.ndarray)
+    assert isinstance(start, list)
     assert end[0] == 5
     assert end[1] == 9
 
